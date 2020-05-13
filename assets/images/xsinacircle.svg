@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>Buttons / CIRCULAR / Close / Dark</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-196.000000, -122.000000)">
+            <g id="Buttons-/-CIRCULAR-/-Close-/-Dark" transform="translate(196.000000, 122.000000)">
+                <g id="Group-9">
+                    <circle id="Oval-2" fill-opacity="0.3" fill="#111111" fill-rule="nonzero" cx="10" cy="10" r="10"></circle>
+                    <g id="Line-+-Line-Copy-2" transform="translate(6.000000, 6.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                        <polygon id="Line" points="0.234314575 0.957957865 6.9453125 7.66895579 7.51099792 7.10327036 0.8 0.39227244"></polygon>
+                        <polygon id="Line-Copy" points="0.8 7.51099792 7.51099792 0.8 6.9453125 0.234314575 0.234314575 6.9453125"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

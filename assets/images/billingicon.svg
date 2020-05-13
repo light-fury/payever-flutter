@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="17px" viewBox="0 0 12 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>4</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M7.83333333,0 C4.60833333,0 2,2.60833333 2,5.83333333 C2,9.30833333 5.68333333,14.1 7.2,15.925 C7.53333333,16.325 8.14166667,16.325 8.475,15.925 C9.98333333,14.1 13.6666667,9.30833333 13.6666667,5.83333333 C13.6666667,2.60833333 11.0583333,0 7.83333333,0 Z M7.83333333,7.91666667 C6.68333333,7.91666667 5.75,6.98333333 5.75,5.83333333 C5.75,4.68333333 6.68333333,3.75 7.83333333,3.75 C8.98333333,3.75 9.91666667,4.68333333 9.91666667,5.83333333 C9.91666667,6.98333333 8.98333333,7.91666667 7.83333333,7.91666667 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="2-details-5" transform="translate(-1214.000000, -790.000000)">
+            <g id="Icons-/-CONNECT-/-SECTIONS-/-location-16x16" transform="translate(1212.000000, 790.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="icon/maps/place_24px" fill="#FFFFFF" fill-rule="nonzero" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>

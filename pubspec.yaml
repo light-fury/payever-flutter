@@ -1,0 +1,77 @@
+name: payever
+description: A new Flutter project.
+
+version: 1.0.0+2
+
+environment:
+  sdk: ">=2.2.2 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^0.1.2
+  http: ^0.12.0+2
+  shared_preferences: ^0.5.3+4
+  path_provider: ^1.1.2
+  page_transition: ^1.1.4
+  chartjs: ^0.5.1
+  flutter_sparkline: ^0.1.0
+  flutter_svg: ^0.12.4
+  auto_size_text: ^2.0.2+1
+  intl: ^0.15.8
+  url_launcher: ^5.1.0
+  #webview_flutter: ^0.3.10+3
+  video_player: 0.10.1+5
+  cached_network_image: ^1.1.0
+  device_info: ^0.4.0+2
+  graphql_flutter: ^2.0.0
+  uuid: ^2.0.2
+  flutter_masked_text: ^0.8.0
+  autocomplete_textfield: ^1.7.3
+  numberpicker: ^1.0.0
+  cron: ^0.2.2
+  flutter_webview_plugin: ^0.3.5
+  flutter_pagewise: ^1.2.3
+  carousel_slider: ^1.3.0
+  flutter_swiper: ^1.1.6
+  dio: ^2.1.13
+  image_picker: ^0.6.0+17
+  provider: ^3.0.0+1
+  rxdart: ^0.22.1
+  oktoast: ^2.2.0
+  package_info: ^0.4.0+6
+  flutter_html: ^0.10.4
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_driver:
+    sdk: flutter
+  test: any
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/translations/widget_app/
+    - assets/translations/connect_app/
+    - assets/translations/product_app/
+    - assets/translations/product_app/product_list/
+    - assets/translations/transaction_app/
+    - assets/translations/settings_app/
+    - assets/translations/transaction_app/transaction_specific/
+    - assets/translations/commerceos/
+    - assets/translations/cart_app/
+    - assets/translations/custom/
+    - assets/videos/
+
+#    fonts:
+#      - family: Helvetica Neue
+#        fonts:
+#          - asset: assets/fonts/HelveticaNeue.ttf
+#          - asset: assets/fonts/HelveticaNeueMed.ttf
+#            style: HelveticaNeue.ttf

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>3</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="2-details-5" transform="translate(-1212.000000, -823.000000)" fill="#FFFFFF" fill-rule="nonzero">
+            <g id="Icons-/-CONNECT-/-SECTIONS-/-Time-16x16" transform="translate(1212.000000, 823.000000)">
+                <path d="M8,0 C3.6,0 0,3.6 0,8 C0,12.4 3.6,16 8,16 C12.4,16 16,12.4 16,8 C16,3.6 12.4,0 8,0 Z M10.84,11.04 L7.576,9.032 C7.336,8.888 7.192,8.632 7.192,8.352 L7.192,4.6 C7.2,4.272 7.472,4 7.8,4 C8.128,4 8.4,4.272 8.4,4.6 L8.4,8.16 L11.472,10.008 C11.76,10.184 11.856,10.56 11.68,10.848 C11.504,11.128 11.128,11.216 10.84,11.04 Z" id="icon/action/watch_later_24px"></path>
+            </g>
+        </g>
+    </g>
+</svg>

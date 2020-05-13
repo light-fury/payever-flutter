@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="12px" viewBox="0 0 16 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>switch</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons-/-FUNCTIONS-/-16PX-/-switch-acounts" transform="translate(0.000000, -2.000000)">
+            <g id="Group-3"></g>
+            <g id="Group" transform="translate(0.000000, 2.000000)" fill="#FFFFFF">
+                <path d="M6,0 C2.688,0 0,2.688 0,6 C0,9.312 2.688,12 6,12 C9.312,12 12,9.312 12,6 C12,2.688 9.312,0 6,0 Z M6,1.8 C6.996,1.8 7.8,2.604 7.8,3.6 C7.8,4.596 6.996,5.4 6,5.4 C5.004,5.4 4.2,4.596 4.2,3.6 C4.2,2.604 5.004,1.8 6,1.8 Z M6,10.32 C4.5,10.32 3.174,9.552 2.4,8.388 C2.418,7.194 4.8,6.54 6,6.54 C7.194,6.54 9.582,7.194 9.6,8.388 C8.826,9.552 7.5,10.32 6,10.32 Z" id="icon/action/account_circle_24px" fill-rule="nonzero"></path>
+                <path d="M10.1736527,7.61462427e-10 C13.4213727,0.182230779 16,2.79877244 16,5.99630242 C16,9.25061784 13.328971,11.903126 10,12 C12.3417153,11.0808438 14.0089459,8.72420334 14.0089459,5.96434138 C14.0089459,3.27319856 12.423708,0.965447236 10.1736527,7.62001212e-10 Z" id="Combined-Shape" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>
