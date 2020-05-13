@@ -18,8 +18,9 @@ bool _isTablet;
 
 class DashboardScreen extends StatelessWidget {
   final appWidgets;
+  final appData;
 
-  DashboardScreen({this.appWidgets});
+  DashboardScreen({this.appWidgets, this.appData});
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +28,7 @@ class DashboardScreen extends StatelessWidget {
       builder: (BuildContext context) {
         DashboardStateModel dashboardStateModel = DashboardStateModel();
         dashboardStateModel.setCurrentWidget(appWidgets);
+        dashboardStateModel.setCurrentAppData(appData);
         return dashboardStateModel;
       },
       child: DashboardScreenWidget(),

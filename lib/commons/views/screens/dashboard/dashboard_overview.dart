@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:payever/commons/views/screens/dashboard/dashboard_app_started.dart';
+import 'package:payever/commons/views/screens/dashboard/dashboard_app_uninstalled.dart';
 import 'package:payever/commons/views/screens/dashboard/settings_card_info.dart';
 import 'package:provider/provider.dart';
 
@@ -20,13 +22,11 @@ class DashboardOverview extends StatelessWidget {
 //    GlobalStateModel globalStateModel = Provider.of<GlobalStateModel>(context);
     DashboardStateModel dashboardStateModel =
         Provider.of<DashboardStateModel>(context);
-
     _activeWid.add(Padding(
       padding: EdgeInsets.only(top: 25),
     ));
     for (int i = 0; i < dashboardStateModel.currentWidgets.length; i++) {
       var wid = dashboardStateModel.currentWidgets[i];
-      print(wid);
       switch (wid.type) {
         case "tutorial":
           // _activeWid.add(TransactionCard(
@@ -46,16 +46,16 @@ class DashboardOverview extends StatelessWidget {
           _activeWid.add(
               SimplifyTransactions(wid.type, NetworkImage(uiKit + wid.icon)));
           break;
-        case "pos":
-          // _activeWid.add(POSCard(
-          //     wid.type,
-          //     NetworkImage(UI_KIT + wid.icon),
-          //     wid.help));
-          _activeWid.add(SimplifyTerminal(
-            wid.type,
-            NetworkImage(uiKit + wid.icon),
-          ));
-          break;
+        // case "pos":
+        //   // _activeWid.add(POSCard(
+        //   //     wid.type,
+        //   //     NetworkImage(UI_KIT + wid.icon),
+        //   //     wid.help));
+        //   _activeWid.add(SimplifyTerminal(
+        //     wid.type,
+        //     NetworkImage(uiKit + wid.icon),
+        //   ));
+        //   break;
         case "products":
           _activeWid.add(ProductsSoldCard(
             wid.type,
@@ -78,6 +78,57 @@ class DashboardOverview extends StatelessWidget {
 //              ));
 //          break;
         default:
+      }
+    }
+      print('----------');
+    for (int i = 0; i < dashboardStateModel.currentAppData.length; i++) {
+      var individualApp = dashboardStateModel.currentAppData[i];
+      var productName = individualApp.dashboardInfo.title.split('.').last;
+      var iconUrl = uiKit + individualApp.dashboardInfo.icon.substring(8);
+      if (individualApp.installed == false) {
+        _activeWid.add(DashboardAppUninstalled(
+          productName,
+          NetworkImage(iconUrl),
+          individualApp.microUuid,
+        ));
+      } else if (individualApp.setupStatus == 'completed') {
+        switch (productName) {
+          case "tutorial":
+            _activeWid
+                .add(SimplyTutorial(productName, NetworkImage(iconUrl)));
+            break;
+          case "transactions":
+            _activeWid.add(
+                SimplifyTransactions(productName, NetworkImage(iconUrl)));
+            break;
+          case "pos":
+            _activeWid.add(SimplifyTerminal(
+              productName,
+              NetworkImage(iconUrl),
+            ));
+            break;
+          case "products":
+            _activeWid.add(ProductsSoldCard(
+              productName,
+              NetworkImage(iconUrl),
+              ""
+            ));
+            break;
+        case "settings":
+          _activeWid.add(SettingsCardInfo(
+            productName,
+            NetworkImage(iconUrl),
+          ));
+            break;
+          default:
+        }
+      } else {
+        _activeWid.add(DashboardAppStarted(
+          productName,
+          NetworkImage(iconUrl),
+          individualApp.microUuid,
+          individualApp.code
+        ));
       }
     }
     return Container(

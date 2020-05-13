@@ -37,6 +37,12 @@ class AppStyle {
 
   static double dashboardCardHeight() => 75;
 
+  static double dashboardAppCardHeight() => 188;
+
+  static double dashboardAppLogoSize() => 48;
+
+  static double dashboardAppButtonHeight() => 42;
+
   static double dashboardCardContentHeight() => 70;
 
   // static double dashboardCardContentPadding() => Measurements.width * 0.02 * 1.5;
@@ -45,6 +51,8 @@ class AppStyle {
   //Lists
 
   //Fonts
+  static double lineHeightAppTitle() => 24;
+
   static double fontSizeListRow() => 12;
 
   static double fontSizeAppBar() => 18;

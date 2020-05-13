@@ -487,4 +487,34 @@ class RestDataSource {
       return result;
     });
   }
+
+  Future<dynamic> toggleBusinessAppInstall(String idBusiness, String token, String microUuid) {
+    print("TAG - ToggleBusinessAppInstall()");
+    var headers = {
+      HttpHeaders.authorizationHeader: "Bearer $token",
+      HttpHeaders.contentTypeHeader: "application/json",
+      HttpHeaders.userAgentHeader: GlobalUtils.fingerprint
+    };
+    var body = jsonEncode({"installed": true, "microUuid": microUuid});
+    return _netUtil
+        .post(businessApps + idBusiness + '/toggle-installed', headers: headers, body: body)
+        .then((dynamic result) {
+      return result;
+    });
+  }
+
+  Future<dynamic> updateBusinessAppStatus(String idBusiness, String token, String microUuid, String code) {
+    print("TAG - UpdateBusinessAppStatus()");
+    var headers = {
+      HttpHeaders.authorizationHeader: "Bearer $token",
+      HttpHeaders.contentTypeHeader: "application/json",
+      HttpHeaders.userAgentHeader: GlobalUtils.fingerprint
+    };
+    var body = jsonEncode({"setupStatus": "completed"});
+    return _netUtil
+        .post(businessApps + idBusiness + '/app/' + code + '/toggle-setup-status', headers: headers, body: body)
+        .then((dynamic result) {
+      return result;
+    });
+  }
 }

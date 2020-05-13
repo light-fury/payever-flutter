@@ -33,7 +33,6 @@ class _AddEmployeeScreenState extends State<AddEmployeeScreen> {
       EmployeesStateModel employeesStateModel) async {
     List<BusinessApps> businessApps = List<BusinessApps>();
     var apps = await employeesStateModel.getAppsBusinessInfo();
-    print(apps);
     for (var app in apps) {
       var appData = BusinessApps.fromMap(app);
       if (appData.dashboardInfo.title != null) {

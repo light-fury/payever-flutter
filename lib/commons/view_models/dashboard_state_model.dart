@@ -33,6 +33,12 @@ class DashboardStateModel extends ChangeNotifier with Validators {
 
   setCurrentWidget(List<AppWidget> apps) => _currentWidgets = apps;
 
+  List<BusinessApps> _currentAppData = List();
+
+  List<BusinessApps> get currentAppData => _currentAppData;
+
+  setCurrentAppData(List<BusinessApps> apps) => _currentAppData = apps;
+
   List<Month> _lastYear = List();
 
   List<Month> get lastYear => _lastYear;

@@ -12,6 +12,7 @@ class BusinessApps {
   final bool started;
   final String tag;
   final String url;
+  final String setupStatus;
 
   BusinessApps(
       {this.id,
@@ -26,7 +27,8 @@ class BusinessApps {
       this.startAt,
       this.started,
       this.tag,
-      this.url});
+      this.url,
+      this.setupStatus});
 
   factory BusinessApps.fromMap(dynamic app) {
     return BusinessApps(
@@ -45,6 +47,7 @@ class BusinessApps {
       started: app['started'],
       tag: app['tag'],
       url: app['url'],
+      setupStatus: app['setupStatus'],
     );
   }
 }

@@ -66,6 +66,7 @@ class _DashboardMidScreenState extends State<DashboardMidScreen> {
 
   void _fetchUserData(dynamic token, bool renew) {
     List<AppWidget> widgets = List();
+    List<BusinessApps> appData = List();
     Business activeBusiness;
     var _token = !renew ? Token.map(token) : token;
     GlobalUtils.activeToken = _token;
@@ -122,22 +123,34 @@ class _DashboardMidScreenState extends State<DashboardMidScreen> {
             });
           }
           RestDataSource()
-              .getWallpaper(activeBusiness.id,
-                  GlobalUtils.activeToken.accessToken, _formKey.currentContext)
-              .then((wall) {
-            String wallpaper = wall[GlobalUtils.CURRENT_WALLPAPER];
-            preferences.setString(
-                GlobalUtils.WALLPAPER, wallpaperBase + wallpaper);
-            globalStateModel.setCurrentWallpaper(wallpaperBase + wallpaper,
-                notify: false);
-            Navigator.pushReplacement(
-                _formKey.currentContext,
-                PageTransition(
-                    child: DashboardScreen(
-                      appWidgets: widgets,
-                    ),
-                    type: PageTransitionType.fade,
-                    duration: Duration(milliseconds: 200)));
+              .getAppsBusiness(activeBusiness.id,
+                  GlobalUtils.activeToken.accessToken)
+              .then((apps) {
+            appData.clear();
+            apps.forEach((item) {
+              if ((item['dashboardInfo']?.isEmpty ?? true) == false) {
+                appData.add(BusinessApps.fromMap(item));
+              }
+            });
+            RestDataSource()
+                .getWallpaper(activeBusiness.id,
+                    GlobalUtils.activeToken.accessToken, _formKey.currentContext)
+                .then((wall) {
+              String wallpaper = wall[GlobalUtils.CURRENT_WALLPAPER][GlobalUtils.WALLPAPER];
+              preferences.setString(
+                  GlobalUtils.WALLPAPER, wallpaperBase + wallpaper);
+              globalStateModel.setCurrentWallpaper(wallpaperBase + wallpaper,
+                  notify: false);
+              Navigator.pushReplacement(
+                  _formKey.currentContext,
+                  PageTransition(
+                      child: DashboardScreen(
+                        appWidgets: widgets,
+                        appData: appData,
+                      ),
+                      type: PageTransitionType.fade,
+                      duration: Duration(milliseconds: 200)));
+            });
           });
         });
       }).catchError((onError) {
