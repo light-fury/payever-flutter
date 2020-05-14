@@ -69,7 +69,7 @@ class _DashboardAppUninstalledState extends State<DashboardAppUninstalled> {
                     Container(
                       height: 24,
                       child: Text(
-                        Language.getWidgetStrings("widgets.${widget._appName}.title"),
+                        Language.getWidgetStrings("widgets.tutorial.type.${widget._appName}"),
                         style: TextStyle(
                           fontSize: AppStyle.fontSizeAppBar(),
                           color: Colors.white.withOpacity(0.95),

@@ -41,7 +41,6 @@
     "widgets.settings.title": "Settings",
     "widgets.settings.actions.edit-wallpaper": "Edit Wallpaper",
     "widgets.settings.actions.add-employee": "Add Employee",
-    "widgets.shipping.title": "Shipping",
     "widgets.pos.title": "Point of Sale",
     "widgets.pos.payment-methods": "Payment methods",
     "widgets.pos.sale-7-days": "Sale in 7 days",
@@ -75,6 +74,7 @@
     "widgets.tutorial.type.contacts": "payever Contacts",
     "widgets.tutorial.type.pos": "payever Point of Sale",
     "widgets.tutorial.type.settings": "payever Settings",
+    "widgets.tutorial.type.shipping": "payever Shipping",
     "widgets.settings.actions.edit-language": "Edit Language",
     "widgets.connect.all_installed": "You have connected all apps",
     "widgets.tutorial.watch": "Watch"

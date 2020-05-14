@@ -512,7 +512,7 @@ class RestDataSource {
     };
     var body = jsonEncode({"setupStatus": "completed"});
     return _netUtil
-        .post(businessApps + idBusiness + '/app/' + code + '/toggle-setup-status', headers: headers, body: body)
+        .patch(businessApps + idBusiness + '/app/' + code + '/toggle-setup-status', headers: headers, body: body)
         .then((dynamic result) {
       return result;
     });
