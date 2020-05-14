@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:flutter_sparkline/flutter_sparkline.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:payever/commons/views/screens/dashboard/dashboard_app_installed.dart';
 import 'package:provider/provider.dart';
 
 import '../../../view_models/view_models.dart';
@@ -590,8 +591,9 @@ class TransactionNavigation implements CardContract {
 class SimplifyTransactions extends StatefulWidget {
   final String _appName;
   final ImageProvider _imageProvider;
+  final bool dashboardApp;
 
-  SimplifyTransactions(this._appName, this._imageProvider);
+  SimplifyTransactions(this._appName, this._imageProvider, {this.dashboardApp = false});
 
   @override
   createState() => _SimplifyTransactionsState();
@@ -640,6 +642,26 @@ class _SimplifyTransactionsState extends State<SimplifyTransactions> {
         sum += lastYear[i].amount;
         monthlySum.add(sum);
       }
+    }
+    if (widget.dashboardApp == true) {
+      return DashboardAppInstalled(
+        widget._appName,
+        widget._imageProvider,
+        lastYear.isEmpty
+            ? Center(child: CircularProgressIndicator())
+            : Head(
+                lastMonth: dashboardStateModel.lastMonth,
+                lastYear: dashboardStateModel.lastYear,
+              ),
+        body: lastYear.isEmpty
+            ? null
+            : Body(
+                lastMonth: dashboardStateModel.lastMonth,
+                total: dashboardStateModel.total,
+                monthlySum: monthlySum,
+              ),
+        defPad: false,
+      );
     }
     return DashboardCardRef(
       widget._appName,

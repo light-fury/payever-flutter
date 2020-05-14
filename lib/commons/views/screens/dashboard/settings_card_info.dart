@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:payever/commons/views/screens/dashboard/dashboard_app_installed.dart';
 import 'package:provider/provider.dart';
 
 import '../../../view_models/view_models.dart';
@@ -14,8 +15,9 @@ import 'dashboard_card_ref.dart';
 class SettingsCardInfo extends StatefulWidget {
   final String _appName;
   final ImageProvider _imageProvider;
+  final bool dashboardApp;
 
-  SettingsCardInfo(this._appName, this._imageProvider);
+  SettingsCardInfo(this._appName, this._imageProvider, {this.dashboardApp = false});
 
   @override
   createState() => _SettingsCardInfoState();
@@ -35,6 +37,13 @@ class _SettingsCardInfoState extends State<SettingsCardInfo> {
    buttonsDataList.add(ButtonsData(icon: AssetImage("assets/images/wallpapericon.png"),
        title: Language.getWidgetStrings("widgets.settings.actions.edit-wallpaper"), action: () => _goToWallpaperScreen()));
 
+    if (widget.dashboardApp == true) {
+      return DashboardAppInstalled(
+        widget._appName,
+        widget._imageProvider,
+        ItemsCardNButtons(buttonsDataList),defPad: false,
+      );
+    }
     return DashboardCardRef(
       widget._appName,
       widget._imageProvider,

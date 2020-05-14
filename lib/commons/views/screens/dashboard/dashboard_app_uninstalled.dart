@@ -14,8 +14,9 @@ class DashboardAppUninstalled extends StatefulWidget {
   final String _appName;
   final String _microUuid;
   final ImageProvider _imageProvider;
+  final Function() _notifyParent;
 
-  DashboardAppUninstalled(this._appName, this._imageProvider, this._microUuid);
+  DashboardAppUninstalled(this._appName, this._imageProvider, this._microUuid, this._notifyParent);
 
   @override
   createState() => _DashboardAppUninstalledState();
@@ -23,6 +24,7 @@ class DashboardAppUninstalled extends StatefulWidget {
 
 class _DashboardAppUninstalledState extends State<DashboardAppUninstalled> {
   GlobalStateModel globalStateModel;
+  DashboardStateModel dashboardStateModel;
 
   @override
   void initState() {
@@ -41,6 +43,7 @@ class _DashboardAppUninstalledState extends State<DashboardAppUninstalled> {
         : MediaQuery.of(context).size.height);
     bool _isTablet = Measurements.width < 600 ? false : true;
     globalStateModel = Provider.of<GlobalStateModel>(context);
+    dashboardStateModel = Provider.of<DashboardStateModel>(context);
     return Container(
       height: AppStyle.dashboardAppCardHeight(),
       color: Colors.transparent,
@@ -48,7 +51,7 @@ class _DashboardAppUninstalledState extends State<DashboardAppUninstalled> {
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: Measurements.width * (_isTablet ? (Measurements.width < 850?0.2: 0.25): (_isPortrait ? 0.05 : 1.3))),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(18),
+          borderRadius: BorderRadius.circular(9),
           clipBehavior: Clip.antiAlias,
           child: Container(
             color: Color(0xFF373737).withOpacity(0.6),
@@ -107,7 +110,12 @@ class _DashboardAppUninstalledState extends State<DashboardAppUninstalled> {
                                 widget._microUuid
                               )
                               .then((apps) {
-                                print(apps);
+                                dashboardStateModel.getAppsBusinessInfo(globalStateModel.currentBusiness)
+                                .then((onData) {
+                                  if (onData == true) {
+                                    widget._notifyParent();
+                                  }
+                                });
                               });
                           },
                         ),

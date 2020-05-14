@@ -191,18 +191,20 @@ class _GridItemsState extends State<GridItems> {
           });
           parts.fetchWallpaper(widget.business.id, context).then((img) {
             parts.getWidgets(widget.business.id, context).then((onValue) {
-              Provider.of<GlobalStateModel>(context)
-                  .setCurrentBusiness(widget.business);
-              SharedPreferences.getInstance().then((p) {
+              parts.getAppsData(widget.business.id).then((onData) {
                 Provider.of<GlobalStateModel>(context)
-                    .setCurrentWallpaper(p.getString(GlobalUtils.WALLPAPER));
+                    .setCurrentBusiness(widget.business);
+                SharedPreferences.getInstance().then((p) {
+                  Provider.of<GlobalStateModel>(context)
+                      .setCurrentWallpaper(p.getString(GlobalUtils.WALLPAPER));
 
-                Navigator.pushReplacement(
-                    context,
-                    PageTransition(
-                        //child:DashboardScreen(GlobalUtils.ActiveToken,img,widget.business,parts._widgets,null),
-                        child: DashboardScreen(appWidgets: parts._widgets),
-                        type: PageTransitionType.fade));
+                  Navigator.pushReplacement(
+                      context,
+                      PageTransition(
+                          //child:DashboardScreen(GlobalUtils.ActiveToken,img,widget.business,parts._widgets,null),
+                          child: DashboardScreen(appWidgets: parts._widgets, appData: parts._appsData),
+                          type: PageTransitionType.fade));
+                });
               });
             });
           });
@@ -470,18 +472,24 @@ class _SwitcherState extends State<Switcher> {
                                 parts
                                     .getWidgets(parts._active.id, context)
                                     .then((onValue) {
-                                  Provider.of<GlobalStateModel>(context)
-                                      .setCurrentBusiness(parts._active);
-                                  SharedPreferences.getInstance().then((p) {
+                                  parts
+                                    .getAppsData(parts._active.id)
+                                    .then((onData) {
                                     Provider.of<GlobalStateModel>(context)
-                                        .setCurrentWallpaper(
-                                            p.getString(GlobalUtils.WALLPAPER));
-                                    Navigator.pushReplacement(
-                                        context,
-                                        PageTransition(
-                                            child: DashboardScreen(
-                                                appWidgets: parts._widgets),
-                                            type: PageTransitionType.fade));
+                                        .setCurrentBusiness(parts._active);
+                                    SharedPreferences.getInstance().then((p) {
+                                      Provider.of<GlobalStateModel>(context)
+                                          .setCurrentWallpaper(
+                                              p.getString(GlobalUtils.WALLPAPER));
+                                      Navigator.pushReplacement(
+                                          context,
+                                          PageTransition(
+                                              child: DashboardScreen(
+                                                  appWidgets: parts._widgets,
+                                                  appData: parts._appsData,
+                                                ),
+                                              type: PageTransitionType.fade));
+                                    });
                                   });
                                 });
                               });
@@ -559,6 +567,7 @@ class SwitchParts {
   Widget grid;
   List<GridItems> _busWidgets = List();
   List<AppWidget> _widgets = List();
+  List<BusinessApps> _appsData = List();
 
   Future<String> fetchWallpaper(String id, BuildContext context) async {
     String wallpaperId;
@@ -595,6 +604,24 @@ class SwitchParts {
     });
 
     return parts._widgets;
+  }
+
+  Future<List<BusinessApps>> getAppsData(String id) async {
+    RestDataSource api = RestDataSource();
+    await api
+        .getAppsBusiness(id, GlobalUtils.activeToken.accessToken)
+        .then((dynamic obj) {
+      parts._appsData = List();
+      obj.forEach((item) {
+        if ((item['dashboardInfo']?.isEmpty ?? true) == false) {
+          parts._appsData.add(BusinessApps.fromMap(item));
+        }
+      });
+    }).catchError((onError) {
+      print("ERROR ---- $onError");
+    });
+
+    return parts._appsData;
   }
 }
 

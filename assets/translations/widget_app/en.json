@@ -64,6 +64,7 @@
     "widgets.checkout.channels": "Channels",
     "widgets.store.no-domain": "None",
     "widgets.pos.no-payments": "No payments yet",
+    "widgets.tutorial.type.store": "payever Shop",
     "widgets.tutorial.type.tutorial": "payever Dashboard",
     "widgets.tutorial.type.transactions": "payever Transactions",
     "widgets.tutorial.type.connect": "payever Connect",

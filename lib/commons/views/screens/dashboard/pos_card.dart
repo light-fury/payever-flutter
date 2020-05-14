@@ -9,6 +9,7 @@ import 'package:intl/intl.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:payever/commons/views/screens/dashboard/dashboard_app_installed.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models/models.dart';
@@ -785,8 +786,9 @@ class ProductItem extends StatelessWidget {
 class SimplifyTerminal extends StatefulWidget {
   final String _appName;
   final ImageProvider _imageProvider;
+  final bool dashboardApp;
 
-  SimplifyTerminal(this._appName, this._imageProvider);
+  SimplifyTerminal(this._appName, this._imageProvider, {this.dashboardApp = false});
 
   @override
   createState() => _SimplifyTerminalState();
@@ -845,6 +847,29 @@ class _SimplifyTerminalState extends State<SimplifyTerminal> {
         SimpleTerminal temp = _terminalList.removeAt(active);
         _terminalList.insert(0, temp);
       }
+    }
+    if (widget.dashboardApp == true) {
+      return DashboardAppInstalled(
+        widget._appName,
+        widget._imageProvider,
+        noTerminals
+            ? NoItemsCard(
+                Text(Language.getWidgetStrings("widgets.pos.install-app")), () {
+                print("Click");
+              })
+            : _terminals.isNotEmpty
+                ? _terminalList[0]
+                : Center(child: CircularProgressIndicator()),
+        body: _terminals.isEmpty
+            ? null
+            : _terminals.length > 1
+                ? ListView(
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    children: _terminalList.sublist(1),
+                  )
+                : null,
+      );
     }
     return DashboardCardRef(
       widget._appName,

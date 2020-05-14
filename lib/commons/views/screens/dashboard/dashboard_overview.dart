@@ -6,20 +6,36 @@ import 'package:provider/provider.dart';
 
 import '../../../view_models/view_models.dart';
 import '../../../utils/utils.dart';
+import '../../../models/models.dart';
 
 import 'pos_card.dart';
 import 'transaction_card.dart';
 import 'tutorial_card.dart';
 import 'products_sold_card.dart';
 
-class DashboardOverview extends StatelessWidget {
+class DashboardOverview extends StatefulWidget {
+  DashboardOverview();
+
+  @override
+  createState() => _DashboardOverviewState();
+}
+
+class _DashboardOverviewState extends State<DashboardOverview> {
   final String uiKit = Env.commerceOs + "/assets/ui-kit/icons-png/";
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  refresh() {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
     List<Widget> _activeWid = List();
 
-//    GlobalStateModel globalStateModel = Provider.of<GlobalStateModel>(context);
     DashboardStateModel dashboardStateModel =
         Provider.of<DashboardStateModel>(context);
     _activeWid.add(Padding(
@@ -80,54 +96,65 @@ class DashboardOverview extends StatelessWidget {
         default:
       }
     }
-      print('----------');
-    for (int i = 0; i < dashboardStateModel.currentAppData.length; i++) {
+    for (int i = 0; i < (dashboardStateModel.currentAppData ?? []).length; i++) {
       var individualApp = dashboardStateModel.currentAppData[i];
       var productName = individualApp.dashboardInfo.title.split('.').last;
       var iconUrl = uiKit + individualApp.dashboardInfo.icon.substring(8);
       if (individualApp.installed == false) {
-        _activeWid.add(DashboardAppUninstalled(
+        _activeWid.add(new DashboardAppUninstalled(
           productName,
           NetworkImage(iconUrl),
           individualApp.microUuid,
+          refresh,
         ));
       } else if (individualApp.setupStatus == 'completed') {
         switch (productName) {
           case "tutorial":
             _activeWid
-                .add(SimplyTutorial(productName, NetworkImage(iconUrl)));
+              .add(SimplyTutorial(
+                productName,
+                NetworkImage(iconUrl),
+                dashboardApp: true,
+              ));
             break;
           case "transactions":
-            _activeWid.add(
-                SimplifyTransactions(productName, NetworkImage(iconUrl)));
+            _activeWid.add(SimplifyTransactions(
+              productName,
+              NetworkImage(iconUrl),
+              dashboardApp: true,
+            ));
             break;
           case "pos":
             _activeWid.add(SimplifyTerminal(
               productName,
               NetworkImage(iconUrl),
+              dashboardApp: true,
             ));
             break;
           case "products":
             _activeWid.add(ProductsSoldCard(
               productName,
               NetworkImage(iconUrl),
-              ""
+              "",
+              dashboardApp: true,
             ));
             break;
-        case "settings":
-          _activeWid.add(SettingsCardInfo(
-            productName,
-            NetworkImage(iconUrl),
-          ));
-            break;
+          case "settings":
+            _activeWid.add(SettingsCardInfo(
+              productName,
+              NetworkImage(iconUrl),
+              dashboardApp: true,
+            ));
+              break;
           default:
         }
       } else {
-        _activeWid.add(DashboardAppStarted(
+        _activeWid.add(new DashboardAppStarted(
           productName,
           NetworkImage(iconUrl),
           individualApp.microUuid,
-          individualApp.code
+          individualApp.code,
+          refresh,
         ));
       }
     }

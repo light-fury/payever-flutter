@@ -140,6 +140,39 @@ class DashboardStateModel extends ChangeNotifier with Validators {
     return _total;
   }
 
+  ///API CALLS
+  Future<bool> getAppsBusinessInfo(Business currentBusiness) async {
+    return RestDataSource().getAppsBusiness(
+        currentBusiness.id, GlobalUtils.activeToken.accessToken)
+        .then((dynamic obj) {
+      List<BusinessApps> businessApps = List<BusinessApps>();
+      obj.forEach((item) {
+        if ((item['dashboardInfo']?.isEmpty ?? true) == false) {
+          var appData = BusinessApps.fromMap(item);
+          if (appData.dashboardInfo.title != null) {
+            if (appData.allowedAcls.create != null) {
+              appData.allowedAcls.create = false;
+            }
+            if (appData.allowedAcls.read != null) {
+              appData.allowedAcls.read = false;
+            }
+            if (appData.allowedAcls.update != null) {
+              appData.allowedAcls.update = false;
+            }
+            if (appData.allowedAcls.delete != null) {
+              appData.allowedAcls.delete = false;
+            }
+            businessApps.add(appData);
+          }
+        }
+      });
+      setCurrentAppData(businessApps);
+      return true;
+    }).catchError((onError) {
+      print("ERROR ---- $onError");
+      return false;
+    });
+  }
 
   Future<List<WallpaperCategory>> getWallpaper() => EmployeesApi().getWallpapers()
   .then((wallpapers){

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:payever/commons/views/screens/dashboard/dashboard_app_installed.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:provider/provider.dart';
 
@@ -14,8 +15,9 @@ import 'dashboard_card_ref.dart';
 class SimplyTutorial extends StatefulWidget {
   final String _appName;
   final ImageProvider _imageProvider;
+  final bool dashboardApp;
 
-  SimplyTutorial(this._appName, this._imageProvider);
+  SimplyTutorial(this._appName, this._imageProvider, {this.dashboardApp = false});
 
   @override
   createState() => _SimplyTutorialCardState();
@@ -61,6 +63,17 @@ class _SimplyTutorialCardState extends State<SimplyTutorial> {
           business: globalStateModel.currentBusiness,
         ));
       });
+    }
+    if (widget.dashboardApp == true) {
+      return DashboardAppInstalled(
+        widget._appName,
+        widget._imageProvider,
+        tutorialRows.isEmpty
+            ? Center(child: CircularProgressIndicator())
+            : Head(tutorialRows),
+        body: tutorialRows.isEmpty ? null : Body(tutorialRows.sublist(2)),
+        defPad: false,
+      );
     }
     return DashboardCardRef(
       widget._appName,

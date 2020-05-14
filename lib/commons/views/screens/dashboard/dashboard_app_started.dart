@@ -4,6 +4,7 @@
 // and two actions.
 
 import 'package:flutter/material.dart';
+import 'package:payever/commons/commons.dart';
 import 'package:payever/commons/network/rest_ds.dart';
 import 'package:payever/commons/utils/app_style.dart';
 import 'package:payever/commons/utils/common_utils.dart';
@@ -16,8 +17,9 @@ class DashboardAppStarted extends StatefulWidget {
   final String _microUuid;
   final String _code;
   final ImageProvider _imageProvider;
+  final Function() _notifyParent;
 
-  DashboardAppStarted(this._appName, this._imageProvider, this._microUuid, this._code);
+  DashboardAppStarted(this._appName, this._imageProvider, this._microUuid, this._code, this._notifyParent);
 
   @override
   createState() => _DashboardAppStartedState();
@@ -25,6 +27,7 @@ class DashboardAppStarted extends StatefulWidget {
 
 class _DashboardAppStartedState extends State<DashboardAppStarted> {
   GlobalStateModel globalStateModel;
+  DashboardStateModel dashboardStateModel;
 
   @override
   void initState() {
@@ -43,6 +46,7 @@ class _DashboardAppStartedState extends State<DashboardAppStarted> {
         : MediaQuery.of(context).size.height);
     bool _isTablet = Measurements.width < 600 ? false : true;
     globalStateModel = Provider.of<GlobalStateModel>(context);
+    dashboardStateModel = Provider.of<DashboardStateModel>(context);
     return Container(
       height: AppStyle.dashboardAppCardHeight(),
       color: Colors.transparent,
@@ -50,7 +54,7 @@ class _DashboardAppStartedState extends State<DashboardAppStarted> {
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: Measurements.width * (_isTablet ? (Measurements.width < 850?0.2: 0.25): (_isPortrait ? 0.05 : 1.3))),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(18),
+          borderRadius: BorderRadius.circular(9),
           clipBehavior: Clip.antiAlias,
           child: Container(
             color: Color(0xFF373737).withOpacity(0.6),
@@ -111,7 +115,12 @@ class _DashboardAppStartedState extends State<DashboardAppStarted> {
                                 widget._code,
                               )
                               .then((apps) {
-                                print(apps);
+                                dashboardStateModel.getAppsBusinessInfo(globalStateModel.currentBusiness)
+                                .then((onData) {
+                                  if (onData == true) {
+                                    widget._notifyParent();
+                                  }
+                                });
                               });
                           },
                         ),
